@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 
+
 export default function Confirm(props) {
   return (
     <main className="appointment__card appointment__card--confirm">
@@ -9,7 +10,7 @@ export default function Confirm(props) {
         <Button onClick={props.onCancel} danger>
           Cancel
         </Button>
-        <Button onClick={props.onConfirm} danger>
+        <Button onClick={() => props.onDelete(props.id)} danger>
           Confirm
         </Button>
       </section>

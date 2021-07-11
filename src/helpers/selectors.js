@@ -33,7 +33,6 @@ export function getInterviewersForDay(state, day) {
   for (const d of state.days) {
     if (d.name === day) {
         interviewDayArr = [...d.interviewers];
-        console.log([...d.interviewers]);
     }
   }
 

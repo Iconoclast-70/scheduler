@@ -27,9 +27,6 @@ export default function Form(props) {
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            /*
-          This must be a controlled component
-        */
           />
         </form>
         <InterviewerList
@@ -40,7 +37,7 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button onClick={(event) => cancel()} danger>
+          <Button onClick={() => cancel()} danger>
             Cancel
           </Button>
           <Button onClick={() => props.onSave(name,interviewer)} confirm>
