@@ -28,8 +28,9 @@ export default function Appointment(props) {
   const deleteInterview = function() {
     transition(DELETING, true);
     props.cancelInterview(props.id)
-    .then((deleted) => {
-      (deleted.response.status === 500) ? transition(ERROR_DELETE, true) : transition(SHOW);
+    .then((res) => {
+      console.log(res);
+      (res.status === 500) ? transition(ERROR_DELETE, true) : transition(SHOW);
     });
   }
 
@@ -45,8 +46,9 @@ export default function Appointment(props) {
     }
 
     props.bookInterview(props.id, interview)
-    .then((saved) => {
-      (saved.response.status === 500) ? transition(ERROR_SAVE, true) : transition(SHOW);
+    .then((res) => {
+      console.log(res);
+      (res.status === 500) ? transition(ERROR_SAVE, true) : transition(SHOW);
     });
   }
   
@@ -116,7 +118,6 @@ export default function Appointment(props) {
           message={"Error when deleting appointment"}
         />
       )}
-
 
     </article>
   );

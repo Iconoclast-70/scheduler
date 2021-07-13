@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { getAppointmentsForDay } from "helpers/selectors";
 
 
 export default function useApplicationData() {
@@ -35,11 +36,30 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const days = state.days.map(day => {
+      if (day.name === state.day) {
+        return { ...day, spots: day.spots - 1}
+      }
+      return day;
+    }); 
+
     return axios.put(`/api/appointments/${id}`, {interview})
     .then(response => {
-        setState({...state, appointments});
-        return response;
+        setState({...state, appointments, days});
+        return response.data;
     })
+    // .then(() => {
+
+    //   const spots = getAppointmentsForDay(state, state.day).filter(spot => spot.interview === null).length;
+    //   const dayID = days[state.day].id;
+
+    //   return axios.put(`/api/days/${dayID}`, spots)
+    //   .then(res => {
+    //     setState({...state, days});
+    //     return res;
+    //   })
+
+    // })
     .catch(error => {
       return error;
     });
@@ -47,7 +67,7 @@ export default function useApplicationData() {
   }
 
   const cancelInterview = function(id) {
-    
+  
     const appointment = {
       ...state.appointments[id]
     };
@@ -55,17 +75,40 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    
+    console.log("BEFORE ", state.days);
+    const days = state.days.map(day => {
+      if (day.name === state.day) {
+        return { ...day, spots: day.spots + 1}
+      }
+      return day;
+    }); 
 
     return axios.delete(`/api/appointments/${id}`, null)
     .then(response => {
-        setState({...state, appointments}); 
-        return response;
+        setState({...state, appointments, days}); 
+        console.log("AFTER ", state.days);
+        return response.data;
     })
+    // .then(() => {
+
+    //   const spots = getAppointmentsForDay(state, state.day).filter(spot => spot.interview === null).length;
+    //   const dayID = days[state.day].id;
+
+    //   return axios.put(`/api/days/${dayID}`, spots)
+    //   .then(res => {
+    //     setState({...state, days});
+    //     return res;
+    //   })
+
+    // })
     .catch(error => {
       return error;
     });
+
   };
   
   return { state, setDay, bookInterview, cancelInterview };
 
 }
+

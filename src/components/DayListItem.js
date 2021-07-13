@@ -9,8 +9,8 @@ const formatSpots = function (spot) {
   if (spot === 1) {
     return "1 spot remaining";
   }
-  if (spot === 2) {
-    return "2 spots remaining";
+  if (spot > 1) {
+    return `${spot} spots remaining`;
   }
 };
 

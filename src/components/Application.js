@@ -1,4 +1,5 @@
 import React from "react";
+//import PropTypes from 'prop-types';
 import DayList from "components/DayList.js";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
@@ -21,7 +22,7 @@ export default function Application(props) {
     return (
       <Appointment
         key={appointment.id}
-        id={appointment.id}
+        id={appointment.id} 
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
@@ -51,6 +52,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {mappedAppointments}
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
