@@ -46,8 +46,8 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, {interview})
     .then(response => {
         setState({...state, appointments, days});
-        return response.data;
-    })
+        return response;
+    });
     // .then(() => {
 
     //   const spots = getAppointmentsForDay(state, state.day).filter(spot => spot.interview === null).length;
@@ -60,16 +60,17 @@ export default function useApplicationData() {
     //   })
 
     // })
-    .catch(error => {
-      return error;
-    });
+    // .catch(error => {
+    //   return {error};
+    // });
     
   }
 
   const cancelInterview = function(id) {
   
     const appointment = {
-      ...state.appointments[id]
+      ...state.appointments[id],
+      interview: {}
     };
     const appointments = {
       ...state.appointments,
@@ -88,8 +89,8 @@ export default function useApplicationData() {
     .then(response => {
         setState({...state, appointments, days}); 
         console.log("AFTER ", state.days);
-        return response.data;
-    })
+        return response;
+    });
     // .then(() => {
 
     //   const spots = getAppointmentsForDay(state, state.day).filter(spot => spot.interview === null).length;
@@ -102,9 +103,9 @@ export default function useApplicationData() {
     //   })
 
     // })
-    .catch(error => {
-      return error;
-    });
+    // .catch(error => {
+    //   return {error};
+    // });
 
   };
   
