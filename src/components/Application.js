@@ -1,19 +1,17 @@
 import React from "react";
-//import PropTypes from 'prop-types';
 import DayList from "components/DayList.js";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 import useApplicationData from "hooks/useApplicationData";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
 
 export default function Application(props) {
-
-  const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview
-  } = useApplicationData();
+  const { state, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
   const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -22,7 +20,7 @@ export default function Application(props) {
     return (
       <Appointment
         key={appointment.id}
-        id={appointment.id} 
+        id={appointment.id}
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}

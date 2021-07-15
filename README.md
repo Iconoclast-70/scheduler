@@ -1,5 +1,7 @@
 # Interview Scheduler
 
+![Scheduler](./public/images/Scheduler1.jpg)
+
 ## Setup
 
 Install dependencies with `npm install`.
