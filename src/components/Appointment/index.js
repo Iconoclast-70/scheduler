@@ -53,7 +53,7 @@ export default function Appointment(props) {
     };
 
     props
-      .bookInterview(props.id, interview)
+      .bookInterview(props.id, interview, mode)
       .then((res) => {
         transition(SHOW);
       })
@@ -106,11 +106,11 @@ export default function Appointment(props) {
       )}
 
       {mode === ERROR_SAVE && (
-        <Error message={"Error when saving appointment"} />
+        <Error message={"Error when saving appointment"} onCancel={back} />
       )}
 
       {mode === ERROR_DELETE && (
-        <Error message={"Error when deleting appointment"} />
+        <Error message={"Error when deleting appointment"} onCancel={back} />
       )}
     </article>
   );

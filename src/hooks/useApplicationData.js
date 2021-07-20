@@ -29,7 +29,7 @@ export default function useApplicationData() {
   }, []);
 
   // Set the state and update the interview object for the current appointment
-  const bookInterview = function (id, interview) {
+  const bookInterview = function (id, interview, mode) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -41,7 +41,10 @@ export default function useApplicationData() {
 
     const days = state.days.map((day) => {
       if (day.name === state.day) {
-        return { ...day, spots: day.spots - 1 };
+        if (mode === "CREATE") {
+          return { ...day, spots: day.spots - 1 };
+        }
+        return { ...day };
       }
       return day;
     });
