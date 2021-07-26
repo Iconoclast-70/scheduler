@@ -62,8 +62,6 @@ export default function Appointment(props) {
       });
   };
 
-  console.log(mode, props);
-
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
@@ -74,7 +72,7 @@ export default function Appointment(props) {
         <Form onCancel={back} onSave={save} interviewers={props.interviewers} />
       )}
 
-      {mode === SHOW && props.interview.interviewer && (
+      {mode === SHOW && ( //props.interview.interviewer && (
         <Show
           onEdit={() => transition(EDIT)}
           confirm={setConfirmTransition}
