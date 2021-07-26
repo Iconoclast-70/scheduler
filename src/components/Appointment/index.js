@@ -72,7 +72,7 @@ export default function Appointment(props) {
         <Form onCancel={back} onSave={save} interviewers={props.interviewers} />
       )}
 
-      {mode === SHOW && ( //props.interview.interviewer && (
+      {mode === SHOW && (
         <Show
           onEdit={() => transition(EDIT)}
           confirm={setConfirmTransition}
